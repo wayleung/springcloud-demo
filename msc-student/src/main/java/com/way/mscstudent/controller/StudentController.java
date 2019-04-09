@@ -5,6 +5,7 @@ import com.way.mscstudent.controller.vo.Result;
 import com.way.mscstudent.dao.entity.Student;
 import com.way.mscstudent.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,18 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
+
+
+
+    @Value("${server.port}")
+    private String port;
+
+
+    @GetMapping(value = "/hi")
+    public String hi(String name){
+        return "hi, I am from "+port;
+    }
+
 
 
 

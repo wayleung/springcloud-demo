@@ -2,10 +2,13 @@ package com.way.mscteacher.controller;
 
 import com.way.mscteacher.controller.vo.CodeMsg;
 import com.way.mscteacher.controller.vo.Result;
+import com.way.mscteacher.controller.vo.Student;
 import com.way.mscteacher.dao.entity.Teacher;
 import com.way.mscteacher.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -15,6 +18,19 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
 
+
+    @Autowired
+    RestTemplate restTemplate;
+
+
+    @Value("${server.port}")
+    private String port;
+
+
+    @GetMapping(value = "/hi")
+    public String hi(String name){
+        return "hi, I am from "+port;
+    }
 
 
     @GetMapping(value = "/teacher")
@@ -47,6 +63,13 @@ public class TeacherController {
     public Result<Integer> deleteByTid(@PathVariable(value = "tid") String tid){
         Integer integer = teacherService.deleteByTid(tid);
         return new Result<>(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),integer);
+    }
+
+
+    @GetMapping(value = "/teacher/student")
+    public String selectAllStudent(){
+        String response = restTemplate.getForObject("http://MSC-STUDENT/student", String.class);
+        return response;
     }
 
 
