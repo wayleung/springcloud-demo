@@ -28,8 +28,8 @@ public class TeacherController {
 
 
     @GetMapping(value = "/hi")
-    public String hi(String name){
-        return "hi, I am from "+port;
+    public String hi(@RequestParam(value = "name",defaultValue = "way") String name){
+        return "hi, I am "+name+",I am from "+port;
     }
 
 
@@ -69,6 +69,13 @@ public class TeacherController {
     @GetMapping(value = "/teacher/student")
     public String selectAllStudent(){
         String response = restTemplate.getForObject("http://MSC-STUDENT/student", String.class);
+        return response;
+    }
+
+
+    @GetMapping(value = "/teacher/student/hi")
+    public String studentHi(@RequestParam(value = "name",defaultValue = "way") String name){
+        String response = restTemplate.getForObject("http://MSC-STUDENT/hi"+name, String.class);
         return response;
     }
 

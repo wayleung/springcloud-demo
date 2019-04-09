@@ -23,8 +23,8 @@ public class StudentController {
 
 
     @GetMapping(value = "/hi")
-    public String hi(String name){
-        return "hi, I am from "+port;
+    public String hi(@RequestParam(value = "name",defaultValue = "way") String name){
+        return "hi, I am "+name+",I am from "+port;
     }
 
 

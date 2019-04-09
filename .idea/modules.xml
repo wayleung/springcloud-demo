@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc-student/msc-student.iml" filepath="$PROJECT_DIR$/msc-student/msc-student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc-teacher/msc-teacher.iml" filepath="$PROJECT_DIR$/msc-teacher/msc-teacher.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springcloud-demo.iml" filepath="$PROJECT_DIR$/.idea/springcloud-demo.iml" />
     </modules>
   </component>
