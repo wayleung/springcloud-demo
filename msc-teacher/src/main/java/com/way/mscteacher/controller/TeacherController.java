@@ -75,7 +75,7 @@ public class TeacherController {
 
     @GetMapping(value = "/teacher/student/hi")
     public String studentHi(@RequestParam(value = "name",defaultValue = "way") String name){
-        String response = restTemplate.getForObject("http://MSC-STUDENT/hi"+name, String.class);
+        String response = restTemplate.getForObject("http://MSC-STUDENT/hi?"+name, String.class);
         return response;
     }
 
