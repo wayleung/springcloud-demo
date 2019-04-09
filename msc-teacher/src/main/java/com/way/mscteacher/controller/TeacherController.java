@@ -22,6 +22,9 @@ public class TeacherController {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    StudentApi studentApi;
+
 
     @Value("${server.port}")
     private String port;
@@ -79,5 +82,11 @@ public class TeacherController {
         return response;
     }
 
+
+    @GetMapping(value = "/teacher/student/hello")
+    public String studentHello(@RequestParam(value = "name",defaultValue = "way") String name){
+        String response = studentApi.hi(name);
+        return response;
+    }
 
 }
