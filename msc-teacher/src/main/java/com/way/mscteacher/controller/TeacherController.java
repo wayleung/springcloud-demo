@@ -1,5 +1,6 @@
 package com.way.mscteacher.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.way.mscteacher.controller.vo.CodeMsg;
 import com.way.mscteacher.controller.vo.Result;
 import com.way.mscteacher.controller.vo.Student;
@@ -77,6 +78,7 @@ public class TeacherController {
 
 
     @GetMapping(value = "/teacher/student/hi")
+    @HystrixCommand(fallbackMethod = "hiError")
     public String studentHi(@RequestParam(value = "name",defaultValue = "way") String name){
         String response = restTemplate.getForObject("http://MSC-STUDENT/hi?"+name, String.class);
         return response;
@@ -89,4 +91,8 @@ public class TeacherController {
         return response;
     }
 
+
+    public String hiError(String name){
+        return "hi,"+name+", sorry error!";
+    }
 }
