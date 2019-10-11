@@ -1,33 +1,30 @@
-package com.way.mscstudent.controller;
+package com.way.mscteacher.controller;
 
-import com.way.mscstudent.config.ServerConfig;
-import com.way.mscstudent.dao.entity.Student;
-import com.way.mscstudent.service.StudentService;
+import com.way.mscteacher.config.ServerConfig;
+import com.way.mscteacher.dao.entity.Teacher;
+import com.way.mscteacher.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/student")
-public class StudentController {
+//@RequestMapping("/teacher")
+public class TeacherController {
 //    @Value("${server.port}")
 //    String port;
 
     @Autowired
-    StudentService studentService;
+    TeacherService teacherService;
 
     @Autowired
     ServerConfig serverConfig;
 
-    @GetMapping("/student")
-    public List<Student> getAllStudent(){
-        return studentService.getAllStudents();
+    @GetMapping("/teacher")
+    public List<Teacher> getAllTeacher(){
+        return teacherService.getAllTeachers();
     }
 
 //    @GetMapping("/hi")
