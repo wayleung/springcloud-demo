@@ -42,7 +42,7 @@ public class TeacherController {
         return "hi,i am from :"+serverConfig.getUrl();
     }
 
-    @GetMapping("/teacher/hi")
+    @GetMapping("/teacher/student/hi")
     public String getHiFromStudent(){
         return restTemplate.getForObject("http://MSC-STUDENT/hi",String.class);
     }

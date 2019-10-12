@@ -1,0 +1,59 @@
+package com.way.mscclass.controller;
+
+import com.way.mscclass.config.ServerConfig;
+import com.way.mscclass.dao.entity.Klass;
+import com.way.mscclass.service.ClassService;
+import com.way.mscclass.service.feign.TeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.net.UnknownHostException;
+import java.util.List;
+
+@RestController
+//@RequestMapping("/class")
+public class ClassController {
+//    @Value("${server.port}")
+//    String port;
+
+    @Autowired
+    ClassService classService;
+
+    @Autowired
+    ServerConfig serverConfig;
+
+    @Autowired
+    TeacherService teacherService;
+
+    @GetMapping("/class")
+    public List<Klass> getAllClass(){
+        return classService.getAllClasses();
+    }
+
+//    @GetMapping("/hi")
+//    public String hi() throws UnknownHostException {
+//        return "hi,i am from port:"+port+" ip:"+ InetAddress.getLocalHost().getHostAddress();
+//    }
+
+    @GetMapping("/hi")
+    public String hi() throws UnknownHostException {
+        return "hi,i am from :"+serverConfig.getUrl();
+    }
+
+
+    @GetMapping("class/teacher/student/hi")
+    public String hiFromTeacherStudent() {
+        return teacherService.getHiFromTeacherStudent();
+    }
+
+    @GetMapping("class/teacher/student")
+    public List studentFromTeacherStudent() {
+        return teacherService.getAllStudentFromTeacherStudent();
+    }
+
+
+
+
+
+}
