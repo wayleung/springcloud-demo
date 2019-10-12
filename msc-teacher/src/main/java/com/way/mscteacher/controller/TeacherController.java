@@ -1,9 +1,11 @@
 package com.way.mscteacher.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.way.mscteacher.config.ServerConfig;
 import com.way.mscteacher.dao.entity.Student;
 import com.way.mscteacher.dao.entity.Teacher;
 import com.way.mscteacher.service.TeacherService;
+import com.way.mscteacher.service.ribbon.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,7 @@ public class TeacherController {
     ServerConfig serverConfig;
 
     @Autowired
-    RestTemplate restTemplate;
+    StudentService studentService;
 
     @GetMapping("/teacher")
     public List<Teacher> getAllTeacher(){
@@ -43,13 +45,17 @@ public class TeacherController {
     }
 
     @GetMapping("/teacher/student/hi")
+
     public String getHiFromStudent(){
-        return restTemplate.getForObject("http://MSC-STUDENT/hi",String.class);
+        return studentService.getHiFromStudent();
     }
 
     @GetMapping("/teacher/student")
     public List<Student> getAllStudentFromStudent(){
-        return restTemplate.getForObject("http://MSC-STUDENT/student",List.class);
+        return studentService.getAllStudentFromStudent();
     }
+
+
+
 
 }
