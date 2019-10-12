@@ -54,6 +54,17 @@ public class ClassController {
 
 
 
+    @GetMapping("class/teacher/hi")
+    public String hiFromTeacher() {
+        return teacherService.getHiFromTeacher();
+    }
 
+
+
+
+    @GetMapping("class/teacher")
+    public List getTeacherFromTeacher() {
+        return teacherService.getTeacherFromTeacher();
+    }
 
 }
