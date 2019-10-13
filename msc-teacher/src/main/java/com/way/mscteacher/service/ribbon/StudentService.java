@@ -18,6 +18,8 @@ public class StudentService {
     public String getHiFromStudent(){
         return restTemplate.getForObject("http://MSC-STUDENT/hi",String.class);
     }
+
+
     @HystrixCommand(fallbackMethod = "studentStudentError")
     public List<Student> getAllStudentFromStudent(){
         return restTemplate.getForObject("http://MSC-STUDENT/student",List.class);
@@ -34,7 +36,7 @@ public class StudentService {
 
     public List<Student> studentStudentError(){
         List list = new ArrayList();
-        String s = "no data";
+        String s = "student's student service error";
         list.add(s);
         return list;
     }

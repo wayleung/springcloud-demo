@@ -15,13 +15,13 @@ public class TeacherServiceHystrix implements TeacherService {
      */
     @Override
     public String getHiFromTeacherStudent() {
-        return "error no data";
+        return "get hi form teacher service error";
     }
 
     @Override
     public List getAllStudentFromTeacherStudent() {
         List list =new ArrayList();
-        list.add("error nodata");
+        list.add("get student form teacher service error");
         return list;
     }
 
