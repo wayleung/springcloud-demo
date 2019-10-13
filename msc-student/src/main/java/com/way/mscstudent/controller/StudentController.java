@@ -25,6 +25,9 @@ public class StudentController {
     @Autowired
     ServerConfig serverConfig;
 
+    @Value("${test.myconfig}")
+    String myconfig;
+
     @GetMapping("/student")
     public List<Student> getAllStudent(){
         return studentService.getAllStudents();
@@ -38,5 +41,10 @@ public class StudentController {
     @GetMapping("/hi")
     public String hi() throws UnknownHostException {
         return "hi,i am from :"+serverConfig.getUrl();
+    }
+
+    @GetMapping("/myconfig")
+    public String getMyConfig(){
+        return myconfig;
     }
 }
