@@ -5,6 +5,7 @@ import com.way.mscstudent.dao.entity.Student;
 import com.way.mscstudent.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
+//需要更新的服务代码页要加上这个注解 不是加在启动类！！
+@RefreshScope
 //@RequestMapping("/student")
 public class StudentController {
 //    @Value("${server.port}")
@@ -25,7 +28,7 @@ public class StudentController {
     @Autowired
     ServerConfig serverConfig;
 
-    @Value("${test.myconfig}")
+    @Value("${myconfig}")
     String myconfig;
 
     @GetMapping("/student")

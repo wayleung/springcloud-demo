@@ -8,7 +8,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@RefreshScope
+//需要更新的服务代码页要加上这个注解 不是加在启动类！！
+//@RefreshScope
 //druid 是一个servlet 需要让SpingBoot支持servlet 且访问地址是 http://127.0.0.1:8762/druid/ 不是localhost
 @ServletComponentScan
 public class MscStudentApplication {
