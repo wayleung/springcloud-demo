@@ -18,4 +18,9 @@ public class ClassServiceImpl implements ClassService {
     public List<Klass> getAllClasses() {
         return classRepository.findAll();
     }
+
+    @Override
+    public void addClass(Klass klass) {
+        classRepository.save(klass);
+    }
 }

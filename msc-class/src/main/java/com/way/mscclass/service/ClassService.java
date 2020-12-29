@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ClassService {
     List<Klass> getAllClasses();
+
+    void addClass(Klass klass);
 }

@@ -2,10 +2,14 @@ package com.way.mscclass.controller;
 
 import com.way.mscclass.config.ServerConfig;
 import com.way.mscclass.dao.entity.Klass;
+import com.way.mscclass.dao.entity.Student;
 import com.way.mscclass.service.ClassService;
+import com.way.mscclass.service.feign.StudentService;
 import com.way.mscclass.service.feign.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.UnknownHostException;
@@ -25,6 +29,9 @@ public class ClassController {
 
     @Autowired
     TeacherService teacherService;
+
+    @Autowired
+    StudentService studentService;
 
     @GetMapping("/class")
     public List<Klass> getAllClass(){
@@ -52,19 +59,35 @@ public class ClassController {
         return teacherService.getAllStudentFromTeacherStudent();
     }
 
-
-
     @GetMapping("class/teacher/hi")
     public String hiFromTeacher() {
         return teacherService.getHiFromTeacher();
     }
 
-
-
-
     @GetMapping("class/teacher")
     public List getTeacherFromTeacher() {
         return teacherService.getTeacherFromTeacher();
+    }
+
+
+
+    @GetMapping("class/student")
+    public List getAllStudentFromStudent() {
+        return studentService.getAllStudent();
+    }
+
+    @GetMapping("class/hi")
+    public String hiFromStudent() {
+        return studentService.hi();
+    }
+
+    @PostMapping("class/student")
+    public void addStudentFromStudent(@RequestBody Student student) {
+        Klass klass = new Klass();
+        klass.setName("class");
+        classService.addClass(klass);
+        student.setClassId(klass.getId());
+        studentService.addStudent(student);
     }
 
 }

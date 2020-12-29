@@ -6,9 +6,7 @@ import com.way.mscstudent.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -28,8 +26,8 @@ public class StudentController {
     @Autowired
     ServerConfig serverConfig;
 
-    @Value("${myconfig}")
-    String myconfig;
+//    @Value("${myconfig}")
+//    String myconfig;
 
     @GetMapping("/student")
     public List<Student> getAllStudent(){
@@ -46,8 +44,13 @@ public class StudentController {
         return "hi,i am from :"+serverConfig.getUrl();
     }
 
-    @GetMapping("/myconfig")
-    public String getMyConfig(){
-        return myconfig;
+//    @GetMapping("/myconfig")
+//    public String getMyConfig(){
+//        return myconfig;
+//    }
+
+    @PostMapping("/student")
+    public void addStudent(@RequestBody Student student){
+        studentService.addStudent(student);
     }
 }
