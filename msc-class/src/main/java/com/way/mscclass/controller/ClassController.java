@@ -7,6 +7,7 @@ import com.way.mscclass.service.ClassService;
 import com.way.mscclass.service.feign.StudentService;
 import com.way.mscclass.service.feign.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,11 +84,7 @@ public class ClassController {
 
     @PostMapping("class/student")
     public void addStudentFromStudent(@RequestBody Student student) {
-        Klass klass = new Klass();
-        klass.setName("class");
-        classService.addClass(klass);
-        student.setClassId(klass.getId());
-        studentService.addStudent(student);
+        classService.addStudentFromStudent(student);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.way.mscclass.service.feign;
 
 import com.way.mscclass.dao.entity.Student;
+import com.way.mscclass.service.hystrix.StudentServiceHystrix;
 import com.way.mscclass.service.hystrix.TeacherServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import java.util.List;
  * @description
  * @date 2020-12-29 11:57:36
  */
-@FeignClient(value = "msc-student")
+@FeignClient(value = "msc-student",fallback = StudentServiceHystrix.class)
 public interface StudentService {
     @GetMapping("/student")
     List<Student> getAllStudent();
