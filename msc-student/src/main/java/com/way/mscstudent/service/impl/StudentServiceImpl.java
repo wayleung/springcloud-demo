@@ -1,7 +1,7 @@
 package com.way.mscstudent.service.impl;
 
 import com.way.mscstudent.dao.entity.Student;
-import com.way.mscstudent.dao.repository.StudentRepository;
+import com.way.mscstudent.dao.repository.StudentMapper;
 import com.way.mscstudent.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,16 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    StudentRepository studentRepository;
+    StudentMapper studentMapper;
 
     @Override
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        return studentMapper.selectAll();
     }
 
     @Override
     public void addStudent(Student student) {
-        System.out.println(1/0);
-        studentRepository.save(student);
+//        System.out.println(1/0);
+        studentMapper.insert(student);
     }
 }

@@ -8,12 +8,14 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 //druid 是一个servlet 需要让SpingBoot支持servlet 且访问地址是 http://127.0.0.1:8762/druid/ 不是localhost
 @ServletComponentScan
 @EnableHystrix
+@MapperScan("com.way.mscteacher.dao.repository")
 public class MscTeacherApplication {
 
     public static void main(String[] args) {
